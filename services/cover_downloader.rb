@@ -1,0 +1,3 @@
+class CoverDownloader
+
+end

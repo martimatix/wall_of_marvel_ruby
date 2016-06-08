@@ -1,0 +1,12 @@
+# Ignore images
+*.jpg
+*.png
+*.ai
+
+# Ignore Mac OS system files
+*.DS_Store
+
+# Ignore zip files
+*.zip
+
+.env
