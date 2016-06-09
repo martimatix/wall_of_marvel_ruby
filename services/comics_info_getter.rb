@@ -17,7 +17,7 @@ class ComicsInfoGetter
       comic_cover_path = comic.dig('thumbnail', 'path')
       unless image_not_avilable?(comic_cover_path)
         image_url = "#{comic_cover_path}.#{comic.dig('thumbnail', 'extension')}"
-        [comic_id, image_url]
+        { comic_id: comic_id, image_url: image_url }
       end
     end
   end
