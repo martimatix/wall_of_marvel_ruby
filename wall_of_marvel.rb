@@ -8,7 +8,7 @@ def directory_exists?(directory)
   File.directory?(directory)
 end
 
-COVERS_FOLDER_PATH = 'covers'
+COVERS_FOLDER_PATH = 'tmp/covers'
 
 puts 'Starting Wall of Marvel'
 

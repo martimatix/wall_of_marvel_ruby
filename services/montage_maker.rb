@@ -7,7 +7,7 @@ class MontageMaker
   JPG_COMPRESSION = 60
   MONTAGE_BORDER_GEOMETRY = '+2+2'
   MONTAGE_TILING = '6x2'
-  MONTAGE_FILE_PATH = 'montage.jpg'
+  MONTAGE_FILE_PATH = 'tmp/montage.jpg'
 
   def perform
     collage.write(MONTAGE_FILE_PATH) { self.quality = JPG_COMPRESSION }
