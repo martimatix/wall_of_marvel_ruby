@@ -4,11 +4,11 @@ require 'mathn'
 class CoverDownloader
   include Magick
 
+  COVERS_TO_DOWNLOAD = 20
   MIN_RATIO = 549/850
   MAX_RATIO = 580/850
   SCALED_COMIC_WIDTH = 320
   SCALED_COMIC_HEIGHT = 486
-  COVERS_TO_DOWNLOAD = 30
 
   def initialize(comics_info)
     @comics_info = comics_info
