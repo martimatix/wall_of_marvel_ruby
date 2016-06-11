@@ -7,11 +7,14 @@ class MontageMaker
   JPG_COMPRESSION = 60
   MONTAGE_BORDER_GEOMETRY = '+2+2'
   MONTAGE_TILING = '6x2'
-  MONTAGE_FILE_PATH = 'tmp/montage.jpg'
+
+  def initialize(covers_folder_path, montage_file_path)
+    @covers_folder_path = covers_folder_path
+    @montage_file_path = montage_file_path
+  end
 
   def perform
-    collage.write(MONTAGE_FILE_PATH) { self.quality = JPG_COMPRESSION }
-    MONTAGE_FILE_PATH
+    collage.write(@montage_file_path) { self.quality = JPG_COMPRESSION }
   end
 
   private
@@ -24,6 +27,6 @@ class MontageMaker
   end
 
   def image_list
-    @image_list ||= Magick::ImageList.new(*Dir['covers/*.png'].sample(COVERS_IN_MONTAGE))
+    @image_list ||= Magick::ImageList.new(*Dir["#{@covers_folder_path}/*.png"].sample(COVERS_IN_MONTAGE))
   end
 end

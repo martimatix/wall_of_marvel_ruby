@@ -9,6 +9,7 @@ def directory_exists?(directory)
 end
 
 COVERS_FOLDER_PATH = 'tmp/covers'
+MONTAGE_FILE_PATH = 'tmp/montage.jpg'
 
 puts 'Starting Wall of Marvel'
 
@@ -21,12 +22,12 @@ FileUtils.mkdir COVERS_FOLDER_PATH
 CoverDownloader.new(comics_info, COVERS_FOLDER_PATH).perform
 
 puts 'Making montage'
-montage_path = MontageMaker.new.perform
+MontageMaker.new(COVERS_FOLDER_PATH, MONTAGE_FILE_PATH).perform
 
 puts 'Uploading montage to S3'
-S3Uploader.new(montage_path).perform
+S3Uploader.new(MONTAGE_FILE_PATH).perform
 
 FileUtils.remove_entry COVERS_FOLDER_PATH
-FileUtils.remove_entry montage_path
+FileUtils.remove_entry MONTAGE_FILE_PATH
 
 puts 'Done!'
