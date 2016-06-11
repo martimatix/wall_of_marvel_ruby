@@ -3,17 +3,22 @@ require 'dotenv'
 Dotenv.load
 
 class S3Uploader
-  def initialize(montage_file_path)
-    @montage_file_path = montage_file_path
+  BUCKET_NAME = 'comicbookwall'
+  S3_FILE_NAME = 'montage.jpg'
+  IMAGE_CONTENT_TYPE = 'image/jpg'
+  FILE_ACL = :public_read
+
+  def initialize(file_path)
+    @file_path = file_path
   end
 
   def perform
-    bucket = service.buckets.find('comicbookwall')
-    montage = bucket.objects.build('montage.jpg')
-    montage.content = open(@montage_file_path)
-    montage.acl = :public_read
-    montage.content_type = 'image/jpg'
-    montage.save
+    bucket = service.buckets.find(BUCKET_NAME)
+    file = bucket.objects.build(S3_FILE_NAME)
+    file.content = open(@file_path)
+    file.acl = FILE_ACL
+    file.content_type = IMAGE_CONTENT_TYPE
+    file.save
   end
 
   private

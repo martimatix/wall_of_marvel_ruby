@@ -10,8 +10,9 @@ class CoverDownloader
   SCALED_COMIC_WIDTH = 320
   SCALED_COMIC_HEIGHT = 486
 
-  def initialize(comics_info)
+  def initialize(comics_info, covers_folder_path)
     @comics_info = comics_info
+    @covers_folder_path = covers_folder_path
   end
 
   def perform
@@ -33,6 +34,6 @@ class CoverDownloader
     puts "Saving and scaling #{comic_id}"
     image = Magick::Image.read(image_url).first
     image.resize!(SCALED_COMIC_WIDTH, SCALED_COMIC_HEIGHT, WelshFilter)
-    image.write("covers/#{comic_id}.png")
+    image.write("#{@covers_folder_path}/#{comic_id}.png")
   end
 end
