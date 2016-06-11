@@ -2,7 +2,7 @@ require_relative 'services/comics_info_getter'
 require_relative 'services/cover_downloader'
 require_relative 'services/montage_maker'
 require_relative 'services/s3_uploader'
-require 'FileUtils'
+require 'fileutils'
 
 def directory_exists?(directory)
   File.directory?(directory)
