@@ -1,6 +1,6 @@
 # Wall of Marvel Ruby
 
-Wall of Marvel written in Ruby.
+Wall of Marvel Chrome extension back end written in Ruby. Try the Chrome extension [here](https://chrome.google.com/webstore/detail/wall-of-marvel/lbjipikblijeahgenjlenchakampaglh).
 
 To run locally:
 
