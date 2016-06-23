@@ -22,12 +22,15 @@ FileUtils.mkdir COVERS_FOLDER_PATH
 CoverDownloader.new(comics_info, COVERS_FOLDER_PATH).perform
 
 puts 'Making montage'
-MontageMaker.new(COVERS_FOLDER_PATH, MONTAGE_FILE_PATH).perform
+status = MontageMaker.new(COVERS_FOLDER_PATH, MONTAGE_FILE_PATH).perform
 
-puts 'Uploading montage to S3'
-S3Uploader.new(MONTAGE_FILE_PATH).perform
+unless status == :error
+  puts 'Uploading montage to S3'
+  S3Uploader.new(MONTAGE_FILE_PATH).perform
+  FileUtils.remove_entry MONTAGE_FILE_PATH
+  puts 'Done!'
+else
+  puts 'ERROR: Not enough images to make montage'
+end
 
 FileUtils.remove_entry COVERS_FOLDER_PATH
-FileUtils.remove_entry MONTAGE_FILE_PATH
-
-puts 'Done!'
