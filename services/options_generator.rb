@@ -3,47 +3,17 @@ require 'dotenv'
 Dotenv.load
 
 class OptionsGenerator
-  COMICS_LIMIT = 60
 
   def perform
-    randomize_options
     options
   end
 
   private
 
-  def randomize_options
-    randomize_date_descriptor
-    randomize_order_by
-  end
-
-  def randomize_date_descriptor
-    options[:dateDescriptor] = ['lastWeek',
-                                'thisWeek',
-                                'nextWeek',
-                                'thisMonth'].sample
-  end
-
-  def randomize_order_by
-    options[:orderBy] = ['focDate',
-                         'onsaleDate',
-                         'title',
-                         'issueNumber',
-                         'modified',
-                         '-focDate',
-                         '-onsaleDate',
-                         '-title',
-                         '-issueNumber',
-                         '-modified'].sample
-  end
-
   def options
     @options ||= {
       query: {
         format: 'comic',
-        formatType: 'comic',
-        noVariants: 'true',
-        limit: COMICS_LIMIT,
         ts: time_stamp,
         apikey: ENV['API_KEY'],
         hash: secruity_hash

@@ -24,13 +24,16 @@ CoverDownloader.new(comics_info, COVERS_FOLDER_PATH).perform
 puts 'Making montage'
 status = MontageMaker.new(COVERS_FOLDER_PATH, MONTAGE_FILE_PATH).perform
 
-unless status == :error
+case status
+when :ok
   puts 'Uploading montage to S3'
   S3Uploader.new(MONTAGE_FILE_PATH).perform
   FileUtils.remove_entry MONTAGE_FILE_PATH
   puts 'Done!'
-else
+when :error
   puts 'ERROR: Not enough images to make montage'
+else :error
+  puts 'ERROR: Something unexpected happened'
 end
 
 FileUtils.remove_entry COVERS_FOLDER_PATH

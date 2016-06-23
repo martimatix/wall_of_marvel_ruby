@@ -16,6 +16,7 @@ class MontageMaker
   def perform
     return :error if image_list.length < COVERS_IN_MONTAGE
     collage.write(@montage_file_path) { self.quality = JPG_COMPRESSION }
+    :ok
   end
 
   private
