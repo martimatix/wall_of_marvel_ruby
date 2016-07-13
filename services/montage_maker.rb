@@ -4,7 +4,7 @@ class MontageMaker
   include Magick
 
   COVERS_IN_MONTAGE = 12
-  JPG_COMPRESSION = 60
+  JPG_COMPRESSION = 80
   MONTAGE_BORDER_GEOMETRY = '+2+2'
   MONTAGE_TILING = '6x2'
 
