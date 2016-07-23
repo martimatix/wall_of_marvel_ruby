@@ -32,7 +32,7 @@ when :ok
   puts 'Done!'
 when :error
   puts 'ERROR: Not enough images to make montage'
-else :error
+else
   puts 'ERROR: Something unexpected happened'
 end
 
