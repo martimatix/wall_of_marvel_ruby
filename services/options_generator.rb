@@ -3,7 +3,7 @@ require 'dotenv'
 Dotenv.load
 
 class OptionsGenerator
-  COMICS_LIMIT = 60
+  COMICS_LIMIT = 100
 
   def perform
     randomize_options
@@ -42,7 +42,7 @@ class OptionsGenerator
       query: {
         format: 'comic',
         formatType: 'comic',
-        noVariants: 'true',
+        noVariants: 'false',
         limit: COMICS_LIMIT,
         ts: time_stamp,
         apikey: ENV['API_KEY'],
