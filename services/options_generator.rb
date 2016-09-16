@@ -26,15 +26,7 @@ class OptionsGenerator
 
   def randomize_order_by
     options[:orderBy] = ['focDate',
-                         'onsaleDate',
-                         'title',
-                         'issueNumber',
-                         'modified',
-                         '-focDate',
-                         '-onsaleDate',
-                         '-title',
-                         '-issueNumber',
-                         '-modified'].sample
+                         'onsaleDate'].sample
   end
 
   def options
