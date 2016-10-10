@@ -15,15 +15,15 @@ class ComicsInfoGetter
     latest_comics.map do |comic|
       comic_id = comic['id']
       comic_cover_path = comic.dig('thumbnail', 'path')
-      unless image_not_avilable?(comic_cover_path)
+      if image_avilable?(comic_cover_path)
         image_url = "#{comic_cover_path}.#{comic.dig('thumbnail', 'extension')}"
         { comic_id: comic_id, image_url: image_url }
       end
     end
   end
 
-  def image_not_avilable?(comic_cover_path)
-    comic_cover_path.split('/').last == 'image_not_available'
+  def image_avilable?(comic_cover_path)
+    comic_cover_path.split('/').last != 'image_not_available'
   end
 
   def latest_comics
