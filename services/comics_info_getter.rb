@@ -1,7 +1,11 @@
 require 'httparty'
 require_relative 'options_generator'
+require 'pry'
 
 class ComicsInfoGetter
+  OLDEST_COMIC_THRESHOLD = 30
+  NEWEST_COMIC_THRESHOLD = -30
+
   include HTTParty
   base_uri 'http://gateway.marvel.com'
 
@@ -27,6 +31,21 @@ class ComicsInfoGetter
   end
 
   def latest_comics
+    results.select do |comic|
+      onsale_date = comic['dates']&.first['date']
+      comic_is_recent?(onsale_date)
+    end
+  end
+
+  def comic_is_recent?(onsale_date)
+    if onsale_date
+      age_of_comic_in_days = Date.today - Date.parse(onsale_date)
+      age_of_comic_in_days > NEWEST_COMIC_THRESHOLD and
+        age_of_comic_in_days < OLDEST_COMIC_THRESHOLD
+    end
+  end
+
+  def results
     marvel_comic_data.parsed_response.dig('data', 'results')
   end
 
