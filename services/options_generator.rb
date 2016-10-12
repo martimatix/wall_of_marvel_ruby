@@ -6,27 +6,17 @@ class OptionsGenerator
   COMICS_LIMIT = 100
 
   def perform
-    randomize_options
+    randomize_date_descriptor
     options
   end
 
   private
-
-  def randomize_options
-    randomize_date_descriptor
-    randomize_order_by
-  end
 
   def randomize_date_descriptor
     options[:dateDescriptor] = ['lastWeek',
                                 'thisWeek',
                                 'nextWeek',
                                 'thisMonth'].sample
-  end
-
-  def randomize_order_by
-    options[:orderBy] = ['focDate',
-                         'onsaleDate'].sample
   end
 
   def options
@@ -39,7 +29,8 @@ class OptionsGenerator
         ts: time_stamp,
         apikey: ENV['API_KEY'],
         hash: secruity_hash
-      }
+      },
+      orderBy: 'onsaleDate'
     }
   end
 
