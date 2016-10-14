@@ -1,6 +1,5 @@
 require 'httparty'
 require_relative 'options_generator'
-require 'pry'
 
 class ComicsInfoGetter
   OLDEST_COMIC_THRESHOLD = 30
