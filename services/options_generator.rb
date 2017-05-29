@@ -4,6 +4,7 @@ Dotenv.load
 
 class OptionsGenerator
   COMICS_LIMIT = 100
+  OFFSET = 100
 
   def perform
     randomize_date_descriptor
@@ -26,6 +27,7 @@ class OptionsGenerator
         formatType: 'comic',
         noVariants: 'false',
         limit: COMICS_LIMIT,
+        offset: OFFSET,
         ts: time_stamp,
         apikey: ENV['API_KEY'],
         hash: secruity_hash
